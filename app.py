@@ -288,14 +288,14 @@ def fmt_cop(val):
 col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
     st.markdown(f"""<div class="kpi-card">
-        <div class="kpi-label">💙 Salario promedio Hombre</div>
+        <div class="kpi-label">Salario promedio Hombre</div>
         <div class="kpi-value">{fmt_cop(avg_male)}</div>
         <div class="kpi-sub">{len(g_male)} registros</div>
     </div>""", unsafe_allow_html=True)
 
 with col2:
     st.markdown(f"""<div class="kpi-card">
-        <div class="kpi-label">🩷 Salario promedio Mujer</div>
+        <div class="kpi-label">Salario promedio Mujer</div>
         <div class="kpi-value">{fmt_cop(avg_female)}</div>
         <div class="kpi-sub">{len(g_female)} registros</div>
     </div>""", unsafe_allow_html=True)
@@ -303,21 +303,21 @@ with col2:
 with col3:
     color_gap = "#FF6B6B" if gap_pct > 5 else "#FFD166" if gap_pct > 0 else "#06D6A0"
     st.markdown(f"""<div class="kpi-card">
-        <div class="kpi-label">📊 Brecha salarial</div>
+        <div class="kpi-label">Brecha salarial</div>
         <div class="kpi-value" style="color:{color_gap}">{gap_pct:.1f}%</div>
         <div class="kpi-sub">Hombres ganan más</div>
     </div>""", unsafe_allow_html=True)
 
 with col4:
     st.markdown(f"""<div class="kpi-card">
-        <div class="kpi-label">🔄 Promociones promedio H/M</div>
+        <div class="kpi-label">Promociones promedio H/M</div>
         <div class="kpi-value">{prom_male:.1f} / {prom_female:.1f}</div>
         <div class="kpi-sub">Historial de ascensos</div>
     </div>""", unsafe_allow_html=True)
 
 with col5:
     st.markdown(f"""<div class="kpi-card">
-        <div class="kpi-label">👥 Total registros</div>
+        <div class="kpi-label">Total registros</div>
         <div class="kpi-value">{n_total}</div>
         <div class="kpi-sub">con filtros aplicados</div>
     </div>""", unsafe_allow_html=True)
@@ -341,7 +341,7 @@ row1_col1, row1_col2 = st.columns([1.3, 1], gap="medium")
 
 # ── GRÁFICO 1: Barras agrupadas por departamento ──
 with row1_col1:
-    st.markdown('<div class="question-tag">❓ ¿En qué departamentos es mayor la brecha salarial entre hombres y mujeres?</div>', unsafe_allow_html=True)
+    st.markdown('<div class="question-tag">¿En qué departamentos es mayor la brecha salarial entre hombres y mujeres?</div>', unsafe_allow_html=True)
 
     dept_salary = (
         df.groupby(["department", "gender"])[metric_col]
@@ -370,7 +370,7 @@ with row1_col1:
 
 # ── GRÁFICO 2: Violin plot de distribución salarial ──
 with row1_col2:
-    st.markdown('<div class="question-tag">❓ ¿Cuánto varía la distribución salarial entre hombres y mujeres?</div>', unsafe_allow_html=True)
+    st.markdown('<div class="question-tag">¿Cuánto varía la distribución salarial entre hombres y mujeres?</div>', unsafe_allow_html=True)
 
     df_plot2 = df.copy()
     df_plot2["salary_M"] = df_plot2[metric_col] / 1_000_000
@@ -401,7 +401,7 @@ row2_col1, row2_col2 = st.columns([1, 1.3], gap="medium")
 
 # ── GRÁFICO 3: Brecha por nivel educativo ──
 with row2_col1:
-    st.markdown('<div class="question-tag">❓ ¿Un mayor nivel educativo reduce la brecha salarial entre géneros?</div>', unsafe_allow_html=True)
+    st.markdown('<div class="question-tag">¿Un mayor nivel educativo reduce la brecha salarial entre géneros?</div>', unsafe_allow_html=True)
 
     edu_salary = (
         df.groupby(["education_level", "gender"])[metric_col]
@@ -455,7 +455,7 @@ with row2_col1:
 
 # ── GRÁFICO 4: Scatter salario vs experiencia ──
 with row2_col2:
-    st.markdown('<div class="question-tag">❓ ¿La experiencia laboral beneficia económicamente a hombres y mujeres por igual?</div>', unsafe_allow_html=True)
+    st.markdown('<div class="question-tag">¿La experiencia laboral beneficia económicamente a hombres y mujeres por igual?</div>', unsafe_allow_html=True)
 
     df_scatter = df.copy()
     df_scatter["salary_M"] = df_scatter[metric_col] / 1_000_000
@@ -489,7 +489,7 @@ row3_col1, row3_col2 = st.columns([1.1, 1], gap="medium")
 
 # ── GRÁFICO 5: Heatmap de salario promedio por nivel de cargo y género ──
 with row3_col1:
-    st.markdown('<div class="question-tag">❓ ¿Existe brecha salarial en todos los niveles jerárquicos de la empresa?</div>', unsafe_allow_html=True)
+    st.markdown('<div class="question-tag">¿Existe brecha salarial en todos los niveles jerárquicos de la empresa?</div>', unsafe_allow_html=True)
 
     heat_data = (
         df.groupby(["job_level", "gender"])[metric_col]
@@ -541,7 +541,7 @@ with row3_col1:
 
 # ── GRÁFICO 6: Historial de promociones por género y nivel educativo ──
 with row3_col2:
-    st.markdown('<div class="question-tag">❓ ¿Las mujeres reciben menos ascensos que los hombres independientemente del nivel educativo?</div>', unsafe_allow_html=True)
+    st.markdown('<div class="question-tag">¿Las mujeres reciben menos ascensos que los hombres independientemente del nivel educativo?</div>', unsafe_allow_html=True)
 
     prom_data = (
         df.groupby(["education_level", "gender"])["promotion_history"]
@@ -576,7 +576,7 @@ st.markdown("---")
 st.markdown(
     "<div style='text-align:center;color:#9BA8C0;font-size:0.78rem;padding:8px 0'>"
     "Dashboard de Brecha Salarial · Maestría en Analítica de Datos · "
-    "Valentina Torres · Mario Orozco · David Merlano · Angie De Alba · Ferney Araujo · "
+    "Valentina Torres - Mario Orozco - David Merlano - Angie De Alba - Ferney Araujo · "
     "Modelos Analíticos – Daniel Romero · 2025"
     "</div>",
     unsafe_allow_html=True,
